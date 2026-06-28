@@ -1,0 +1,63 @@
+
+# ##########################################################
+# Package
+
+[package]
+
+authors = [
+	"Matt Wilson <matthew@synesis.com.au>",
+]
+categories = [
+	"development-tools::build-utils",
+]
+description = "Build tools, for Rust"
+documentation = "https://docs.rs/bt-rs"
+edition = "2021"
+homepage = "https://github.com/synesissoftware/bt-rs"
+keywords = [
+	"build",
+	"cargo",
+	"rust",
+	"tools",
+]
+license = "BSD-3-Clause"
+name = "bt-rs"
+readme = "README.md"
+repository = "https://github.com/synesissoftware/bt-rs"
+rust-version = "1.74"
+version = "0.0.0"
+
+
+# ##########################################################
+# Targets
+
+[lib]
+name = "bt_rs"
+path = "src/lib.rs"
+
+
+# ##########################################################
+# Features
+
+[features]
+
+default = [
+]
+
+# General features:
+#
+# - "null-feature" - a feature that has no effect (and, thus, is useful for simplifying driver scripts);
+
+null-feature = []
+
+
+# ##########################################################
+# Dependencies
+
+[dependencies]
+
+
+[dev-dependencies]
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
