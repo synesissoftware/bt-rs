@@ -45,17 +45,9 @@
 
 // lib.rs : bt-rs
 
-macro_rules! declare_and_publish {
-    ($mod_name:ident, $($type_name:ident),* $(,)?) => {
-        mod $mod_name;
+pub(crate) mod macros;
 
-        pub use $mod_name::{
-            $($type_name),*
-        };
-    };
-}
-
-declare_and_publish!(
+macros::declare_and_publish!(
     common,
     ToolVersion,
     VersionError,
