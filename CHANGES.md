@@ -3,7 +3,7 @@
 
 ## 0.0.1 - 28th June 2026
 
-* T.B.C.;
+* added `ToolVersion`, `VersionError`, and `rustc::compiler_version()`;
 
 
 ## 0.0.0 - 28th June 2026
