@@ -4,13 +4,16 @@ Build tools, for Rust
 
 ![Language](https://img.shields.io/badge/Rust-000000?style=flat&logo=rust&logoColor=white)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![Crates.io](https://img.shields.io/crates/v/bt-rs.svg)](https://crates.io/crates/bt-rs)
+[![GitHub release](https://img.shields.io/github/v/release/synesissoftware/bt-rs.svg)](https://github.com/synesissoftware/bt-rs/releases/latest)
 ![MSRV](https://img.shields.io/badge/MSRV-1.74-lightgrey)
 [![CI](https://github.com/synesissoftware/bt-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/synesissoftware/bt-rs/actions/workflows/ci.yml)
+[![docs.rs](https://docs.rs/bt-rs/badge.svg)](https://docs.rs/bt-rs)
 
 
 ## Introduction
 
-**bt-rs** provides build tools for **Rust** projects.
+**bt-rs** provides **b**uild **t**ools for **R**u**s**t projects.
 
 
 ## Table of Contents <!-- omit in toc -->
