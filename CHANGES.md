@@ -1,6 +1,11 @@
 # bt-rs Changes <!-- omit in toc -->
 
 
+## 0.0.2 - 29th June 2026
+
+* internal implementation improvements;
+
+
 ## 0.0.1 - 28th June 2026
 
 * added `ToolVersion`, `VersionError`, and `rustc::compiler_version()`;
