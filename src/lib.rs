@@ -47,7 +47,7 @@
 
 pub(crate) mod macros;
 
-macros::declare_and_publish!(
+macros::declare_and_publish!(pub
     common,
     ToolVersion,
     VersionError,

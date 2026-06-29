@@ -1,7 +1,7 @@
 # bt-rs Changes <!-- omit in toc -->
 
 
-## 0.0.2 - 29th June 2026
+## 0.0.2 - 30th June 2026
 
 * internal implementation improvements;
 
