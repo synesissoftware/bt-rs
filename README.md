@@ -21,23 +21,23 @@ Build tools, for Rust
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Components](#components)
-	- [Constants](#constants)
-	- [Enumerations](#enumerations)
-	- [Features](#features)
-	- [Functions](#functions)
-	- [Macros](#macros)
-	- [Structures](#structures)
-	- [Traits](#traits)
+  - [Constants](#constants)
+  - [Enumerations](#enumerations)
+  - [Features](#features)
+  - [Functions](#functions)
+  - [Macros](#macros)
+  - [Structures](#structures)
+  - [Traits](#traits)
 - [Examples](#examples)
 - [Project Information](#project-information)
-	- [Where to get help](#where-to-get-help)
-	- [Contribution guidelines](#contribution-guidelines)
-	- [Dependencies](#dependencies)
-		- [Efferent (fan-out)](#efferent-fan-out)
-			- [Development Dependencies](#development-dependencies)
-		- [Afferent (fan-in)](#afferent-fan-in)
-	- [Related projects](#related-projects)
-	- [License](#license)
+  - [Where to get help](#where-to-get-help)
+  - [Contribution guidelines](#contribution-guidelines)
+  - [Dependencies](#dependencies)
+    - [Efferent (fan-out)](#efferent-fan-out)
+      - [Development Dependencies](#development-dependencies)
+    - [Afferent (fan-in)](#afferent-fan-in)
+  - [Related projects](#related-projects)
+  - [License](#license)
 
 
 ## Installation
@@ -45,7 +45,7 @@ Build tools, for Rust
 Reference in **Cargo.toml** in the usual way:
 
 ```toml
-bt-rs = { version = "0.1" }
+bt-rs = { version = "0.0" }
 ```
 
 
@@ -92,7 +92,8 @@ No public traits are defined at this time.
 
 ## Examples
 
-No examples are provided at this time.
+No standalone examples are provided at this time; the crate-level rustdoc
+includes a compiling compiler-version example.
 
 
 ## Project Information

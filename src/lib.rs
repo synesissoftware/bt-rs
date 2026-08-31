@@ -4,7 +4,8 @@
 //! inspect the Rust toolchain — starting with parsing `rustc --version`
 //! output into a structured [`ToolVersion`].
 //!
-//! Tool-specific APIs live in submodules (e.g. [`rustc::compiler_version`]);
+//! Tool-specific APIs live in submodules (e.g.
+//! [`rustc::compiler_version`]);
 //! shared types are re-exported at the crate root.
 //!
 //! # Installation
@@ -12,7 +13,7 @@
 //! Reference in **Cargo.toml** in the usual way:
 //!
 //! ```toml
-//! bt-rs = { version = "0.1" }
+//! bt-rs = { version = "0.0" }
 //! ```
 //!
 //! # Components
@@ -44,6 +45,7 @@
 //! further information.
 
 // lib.rs : bt-rs
+
 
 pub(crate) mod macros;
 
