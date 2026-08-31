@@ -1,4 +1,4 @@
-# bt-rs Changes <!-- omit in toc -->
+# bt-rs - Changes <!-- omit in toc -->
 
 
 ## 0.0.2 - 29th June 2026
