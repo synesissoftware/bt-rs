@@ -44,8 +44,8 @@ def atom_violation(atom: str) -> str | None:
         return None
 
     return (
-        f"segment '{atom}' must be SHOUTING_SNAKE_CASE, a PascalCase construct name, "
-        "or a Rust snake_case identifier"
+        f"segment '{atom}' must be SHOUTING_SNAKE_CASE, a PascalCase construct "
+        "name, or a Rust snake_case identifier"
     )
 
 
@@ -59,15 +59,17 @@ def parse_padded_construct(
     while i < len(segments) and not segments[i]:
         i += 1
     if i >= len(segments):
-        return None, i, [f"empty segment padding without construct"]
+        return None, i, ["empty segment padding without construct"]
 
     seg = segments[i]
     atom: str | None = None
 
-    if seg.isupper():
+    if seg.isupper() or seg.isdigit():
         parts = [seg]
         i += 1
-        while i < len(segments) and segments[i] and segments[i].isupper():
+        while i < len(segments) and segments[i] and (
+            segments[i].isupper() or segments[i].isdigit()
+        ):
             parts.append(segments[i])
             i += 1
         atom = "_".join(parts)
@@ -76,12 +78,12 @@ def parse_padded_construct(
             violations.append(reason)
     elif seg[0].isupper() and is_pascal_case_atom(seg):
         atom = seg
-        reason = atom_violation(atom)
+        reason = atom_violation(seg)
         if reason:
             violations.append(reason)
         i += 1
     else:
-        return None, start, [f"empty segment padding without construct"]
+        return None, start, ["empty segment padding without construct"]
 
     while i < len(segments) and not segments[i]:
         i += 1
@@ -99,12 +101,15 @@ def parse_name_atoms(rest: str) -> tuple[list[str], list[str]]:
     while i < len(segments):
         seg = segments[i]
         if not seg:
+            start = i
             atom, i, viols = parse_padded_construct(segments, i)
             violations.extend(viols)
             if atom:
                 atoms.append(atom)
             elif not viols:
                 violations.append(f"empty segment in '{rest}'")
+            if i == start:
+                i += 1
             continue
 
         if seg.isupper() or seg.isdigit():
@@ -140,8 +145,8 @@ def parse_name_atoms(rest: str) -> tuple[list[str], list[str]]:
             continue
 
         violations.append(
-            f"segment '{seg}' must be SHOUTING_SNAKE_CASE, a PascalCase construct name, "
-            "or a Rust snake_case identifier"
+            f"segment '{seg}' must be SHOUTING_SNAKE_CASE, a PascalCase construct "
+            "name, or a Rust snake_case identifier"
         )
         i += 1
 
