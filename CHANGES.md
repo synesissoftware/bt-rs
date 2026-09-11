@@ -1,6 +1,16 @@
 # bt-rs - Changes <!-- omit in toc -->
 
 
+## 0.0.4 - 11th September 2026
+
+* modernised repository metadata, editor configuration, ignore rules, and Rust formatting configuration;
+* simplified CI into stable checks with pinned nightly formatting, example builds, and current release validation;
+* added the **versions** example and **EXAMPLES.md**, and excluded development-only files from published packages;
+* documented the MSRV and added the `_NEVER_TO_BE_ENABLED` placeholder feature;
+* improved the test-name checker to handle numeric and padded construct names;
+* clarified macro documentation and refreshed the formatting driver for the pinned nightly toolchain;
+
+
 ## 0.0.3 - 31st August 2026
 
 * added canonical Rust CI checks and release validation;
