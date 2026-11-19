@@ -1,6 +1,13 @@
 # bt-rs - Changes <!-- omit in toc -->
 
 
+## 0.0.5 - 19th November 2026
+
+* aligned **README.md** with the Synesis layout, including **Developer Experience** and documentation of `VersionError`, `ToolVersion`, and `rustc::compiler_version()`;
+* recorded the **versions** example in **EXAMPLES.md**;
+* aligned **NEWS.md** to the three-column chronology, with code in backticks and filenames in bold;
+
+
 ## 0.0.4 - 11th September 2026
 
 * modernised repository metadata, editor configuration, ignore rules, and Rust formatting configuration;
