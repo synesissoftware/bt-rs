@@ -7,9 +7,13 @@ use std::cmp::Ordering;
 #[derive(Clone)]
 #[derive(Debug)]
 pub struct ToolVersion {
+    /// Major version number.
     pub major :       u32,
+    /// Minor version number.
     pub minor :       u32,
+    /// Patch version number.
     pub patch :       u32,
+    /// Build metadata.
     pub build :       String,
     /// Pre-release channel from the version token, when one is present.
     ///
@@ -34,16 +38,21 @@ impl ToolVersion {
 // Non-mutating methods
 
 impl ToolVersion {
-    /// `true` when `pre_release` is `Some("nightly")`.
-    pub fn is_nightly(&self) -> bool {
-        self.pre_release.as_deref() == Some("nightly")
-    }
-
     /// `true` when `pre_release` is `Some("beta")`.
     pub fn is_beta(&self) -> bool {
         self.pre_release.as_deref() == Some("beta")
     }
 
+    /// `true` when `pre_release` is `Some("nightly")`.
+    pub fn is_nightly(&self) -> bool {
+        self.pre_release.as_deref() == Some("nightly")
+    }
+}
+
+
+// Implementation
+
+impl ToolVersion {
     fn cmp_components(
         &self,
         major : u32,
@@ -57,12 +66,6 @@ impl ToolVersion {
             .then_with(|| self.patch.cmp(&patch))
             .then_with(|| self.build.as_str().cmp(build))
     }
-}
-
-
-// Implementation
-
-impl ToolVersion {
 }
 
 
