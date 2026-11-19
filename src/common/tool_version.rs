@@ -7,10 +7,15 @@ use std::cmp::Ordering;
 #[derive(Clone)]
 #[derive(Debug)]
 pub struct ToolVersion {
-    pub major : u32,
-    pub minor : u32,
-    pub patch : u32,
-    pub build : String,
+    pub major :       u32,
+    pub minor :       u32,
+    pub patch :       u32,
+    pub build :       String,
+    /// Pre-release channel from the version token, when one is present.
+    ///
+    /// `Some("nightly")` for nightly. `Some("beta")` for beta. `None`
+    /// for a stable compiler. Tuple comparisons ignore this field.
+    pub pre_release : Option<String>,
 }
 
 
@@ -29,6 +34,16 @@ impl ToolVersion {
 // Non-mutating methods
 
 impl ToolVersion {
+    /// `true` when `pre_release` is `Some("nightly")`.
+    pub fn is_nightly(&self) -> bool {
+        self.pre_release.as_deref() == Some("nightly")
+    }
+
+    /// `true` when `pre_release` is `Some("beta")`.
+    pub fn is_beta(&self) -> bool {
+        self.pre_release.as_deref() == Some("beta")
+    }
+
     fn cmp_components(
         &self,
         major : u32,
@@ -107,6 +122,7 @@ impl Ord for ToolVersion {
         other : &Self,
     ) -> Ordering {
         self.cmp_components(other.major, other.minor, other.patch, other.build.as_str())
+            .then_with(|| self.pre_release.cmp(&other.pre_release))
     }
 }
 
@@ -168,16 +184,18 @@ mod tests {
     #[test]
     fn TEST_ToolVersion_Ord_AGAINST_ToolVersion() {
         let a = ToolVersion {
-            major : 1,
-            minor : 94,
-            patch : 0,
-            build : String::new(),
+            major :       1,
+            minor :       94,
+            patch :       0,
+            build :       String::new(),
+            pre_release : None,
         };
         let b = ToolVersion {
-            major : 1,
-            minor : 94,
-            patch : 1,
-            build : String::new(),
+            major :       1,
+            minor :       94,
+            patch :       1,
+            build :       String::new(),
+            pre_release : None,
         };
 
         assert_eq!(a.cmp(&b), Ordering::Less);
@@ -187,10 +205,11 @@ mod tests {
     #[test]
     fn TEST_ToolVersion_PartialOrd_AGAINST_major() {
         let version = ToolVersion {
-            major : 2,
-            minor : 0,
-            patch : 0,
-            build : String::new(),
+            major :       2,
+            minor :       0,
+            patch :       0,
+            build :       String::new(),
+            pre_release : None,
         };
 
         assert!(version > (1,));
@@ -201,10 +220,11 @@ mod tests {
     #[test]
     fn TEST_ToolVersion_PartialOrd_AGAINST_major_minor() {
         let version = ToolVersion {
-            major : 1,
-            minor : 94,
-            patch : 0,
-            build : String::new(),
+            major :       1,
+            minor :       94,
+            patch :       0,
+            build :       String::new(),
+            pre_release : None,
         };
 
         assert!(version >= (1, 94));
@@ -216,10 +236,11 @@ mod tests {
     #[test]
     fn TEST_ToolVersion_PartialOrd_AGAINST_major_minor_patch() {
         let version = ToolVersion {
-            major : 1,
-            minor : 96,
-            patch : 0,
-            build : String::new(),
+            major :       1,
+            minor :       96,
+            patch :       0,
+            build :       String::new(),
+            pre_release : None,
         };
 
         assert!(version >= (1, 96, 0));
@@ -229,10 +250,11 @@ mod tests {
     #[test]
     fn TEST_ToolVersion_PartialOrd_AGAINST_major_minor_patch_build() {
         let version = ToolVersion {
-            major : 1,
-            minor : 96,
-            patch : 0,
-            build : "abc".to_string(),
+            major :       1,
+            minor :       96,
+            patch :       0,
+            build :       "abc".to_string(),
+            pre_release : None,
         };
 
         assert!(version >= (1, 96, 0, "abc"));

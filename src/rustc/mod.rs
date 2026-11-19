@@ -2,7 +2,7 @@
 
 use crate::macros::declare_and_publish;
 
-declare_and_publish!(version, compiler_version);
+declare_and_publish!(version, compiler_version, emit_cfg);
 
 
 // ///////////////////////////// end of file //////////////////////////// //

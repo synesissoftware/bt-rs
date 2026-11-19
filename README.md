@@ -109,7 +109,22 @@ No public constants are defined at this time.
 
 ### Functions
 
-`rustc::compiler_version()` runs `rustc --version` (or `$RUSTC --version`) and returns `Result<ToolVersion, VersionError>`.
+`rustc::compiler_version()` runs `rustc --version` (or `$RUSTC --version`) once and returns `Result<ToolVersion, VersionError>`.
+
+`rustc::emit_cfg()` prints `cargo:rustc-check-cfg` for a caller-chosen cfg name, and `cargo:rustc-cfg` for that name when the caller's predicate holds. It does not spawn `rustc`.
+
+```rust
+use bt_rs::rustc::{
+    compiler_version,
+    emit_cfg,
+};
+use bt_rs::ToolVersion;
+
+let version = compiler_version()?;
+
+emit_cfg(&version, "rustc_nightly", ToolVersion::is_nightly);
+emit_cfg(&version, "rustc_1_76_or_newer", |version| version >= (1, 76));
+```
 
 
 ### Macros
@@ -130,12 +145,15 @@ pub struct ToolVersion {
     pub minor : u32,
     pub patch : u32,
     pub build : String,
+    pub pre_release : Option<String>,
 }
 ```
 
-Two `ToolVersion` values compare in the usual order: major, then minor, then patch, then the build string.
+`pre_release` is the extension that designates the channel. It is `Some("nightly")` when the version token contains `-nightly`, and `Some("beta")` when it contains `-beta` (a trailing `.N`, as in `beta.1`, is not part of the channel). A stable token leaves it `None`. `is_nightly()` and `is_beta()` are the queries.
 
-The same order works against a tuple, so a check can name only the prefix it cares about. Fields the tuple omits are treated as zero, and an omitted build is treated as empty:
+Two `ToolVersion` values compare in the usual order: major, then minor, then patch, then the build string, then `pre_release`.
+
+Tuple comparisons ignore `pre_release`, so a nightly compiler still orders as its numeric version. A check can name only the prefix it cares about. Fields the tuple omits are treated as zero, and an omitted build is treated as empty:
 
 ```rust
 let version = compiler_version()?;
