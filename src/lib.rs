@@ -20,14 +20,16 @@
 //!
 //! ## Types
 //!
-//! * [`ToolVersion`] — major, minor, patch, and build metadata parsed
-//!   from a tool `--version` line;
+//! * [`ToolVersion`] — major, minor, patch, build, and an optional
+//!   `pre_release` channel (`nightly`, `beta`) parsed from a tool
+//!   `--version` line;
 //! * [`VersionError`] — failure to run or parse a tool `--version`
 //!   invocation;
 //!
 //! ## Modules
 //!
-//! * [`rustc`] — `rustc` compiler version ([`rustc::compiler_version`]);
+//! * [`rustc`] — `rustc` compiler version ([`rustc::compiler_version`])
+//!   and Cargo cfg emission ([`rustc::emit_cfg`]);
 //!
 //! # Examples
 //!
